@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aathavan availability · Apartments in Dehiwala · Excello</title>
+  <meta name="description" content="Currently available two- and three-bedroom apartments at Aathavan, Dehiwala. Compare by floor, size and standard price; verified by the Aathavan Unit Register.">
+  <link rel="canonical" href="https://excello.lk/aathavan-availability/">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-route="availability">
+<main id="main">
+
+  <section class="hero hero--light">
+    <div class="hero__inner">
+      <p class="hero__kicker" style="color:var(--terra)">Aathavan availability</p>
+      <h1>Find your home at Aathavan.</h1>
+      <p>Compare currently available two- and three-bedroom residences at <strong>No. 6, Carron Place, Dehiwala</strong>. Standard prices are calculated at LKR 40,000 per sq ft. Promotional or negotiated rates may differ.</p>
+      <p id="freshness" style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--terra);font-weight:700">Loading unit register…</p>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="wrap">
+      <div class="filterbar" role="toolbar" aria-label="Availability filters">
+        <div class="filterbar__group" role="group" aria-label="Bedrooms">
+          <span class="filterbar__label">Bedrooms</span>
+          <button class="chip" aria-pressed="true" data-filter="config" data-value="all">All</button>
+          <button class="chip" aria-pressed="false" data-filter="config" data-value="2 Bedroom">2 BR</button>
+          <button class="chip" aria-pressed="false" data-filter="config" data-value="3 Bedroom">3 BR</button>
+          <button class="chip" aria-pressed="false" data-filter="config" data-value="3 Bedroom + Maid's Room">3 BR + Maid</button>
+        </div>
+        <div class="filterbar__group" role="group" aria-label="Status">
+          <span class="filterbar__label">Status</span>
+          <button class="chip" aria-pressed="true" data-filter="status" data-value="all">All</button>
+          <button class="chip" aria-pressed="false" data-filter="status" data-value="available">Available</button>
+          <button class="chip" aria-pressed="false" data-filter="status" data-value="reserved">Reserved</button>
+          <button class="chip" aria-pressed="false" data-filter="status" data-value="sold">Sold</button>
+        </div>
+        <button class="filterbar__reset" type="button" id="resetFilters">Reset</button>
+        <span class="filterbar__meta" id="resultCount">—</span>
+      </div>
+
+      <div class="table-wrap">
+        <table class="units" id="unitsTable">
+          <thead>
+            <tr>
+              <th scope="col">Unit</th>
+              <th scope="col">Type</th>
+              <th scope="col">Floor</th>
+              <th scope="col">Configuration</th>
+              <th scope="col">Area (sq ft)</th>
+              <th scope="col">Standard price (LKR)</th>
+              <th scope="col">Status</th>
+              <th scope="col">Enquire</th>
+            </tr>
+          </thead>
+          <tbody id="unitsBody">
+            <tr><td colspan="8" style="text-align:center;color:var(--muted);padding:40px">Loading units…</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="empty" id="empty" hidden>No units match these filters. <button type="button" class="filterbar__reset" id="resetFromEmpty">Reset filters</button></div>
+
+      <div class="grid grid-2" style="margin-top:28px">
+        <p class="notice">
+          <strong>Payment plan:</strong> LKR 1M reservation · 30% down payment · 22 monthly instalments for the balance 70%. Availability and prices are indicative and subject to confirmation at reservation.
+        </p>
+        <p class="notice">
+          <strong>Freshness &amp; stale data:</strong> If the Unit Register has not been updated recently, this page shows a stale banner and the recommended action is a direct call to the Aathavan team.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="wrap">
+      <div class="grid grid-2" style="align-items:center">
+        <div>
+          <p class="section__kicker">Need help choosing?</p>
+          <h2 class="section__h">Speak with the Aathavan team.</h2>
+          <p class="section__lead">Ask about unit orientation, payment options, floor plans or arrange a project consultation.</p>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn" href="tel:+94770222000">Call +94 77 022 2000</a>
+          <a class="btn btn--ghost" href="https://wa.me/94770222000">WhatsApp Excello</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Unit-context enquiry dialog -->
+<dialog id="unitDialog" style="padding:0;border:0;background:transparent;max-width:560px;width:92%">
+  <div class="card" style="padding:24px">
+    <h2 id="dlgTitle" style="font-size:22px;font-weight:600;margin-bottom:4px">Enquire about this unit</h2>
+    <p id="dlgSub" style="color:var(--muted);font-size:14px;margin-bottom:14px"></p>
+    <form class="form" id="unitForm" method="post" action="/api/enquiry" novalidate>
+      <input type="hidden" name="source" value="aathavan-unit">
+      <input type="hidden" name="unit" id="dlgUnit">
+      <div class="form__row">
+        <div class="field"><label for="dlg-name">Your name</label><input id="dlg-name" name="name" type="text" required></div>
+        <div class="field"><label for="dlg-contact">Email or WhatsApp</label><input id="dlg-contact" name="contact" type="text" required></div>
+      </div>
+      <div class="field"><label for="dlg-msg">A short note (optional)</label><textarea id="dlg-msg" name="message" rows="3"></textarea></div>
+      <div style="display:flex;gap:10px">
+        <button class="btn" type="submit">Send enquiry</button>
+        <button class="btn btn--ghost" type="button" id="dlgClose">Close</button>
+      </div>
+      <p class="form__msg" id="dlg-msg" hidden></p>
+    </form>
+  </div>
+</dialog>
+
+<script>
+  (function () {
+    var state = { config: 'all', status: 'all' };
+    var tbody = document.getElementById('unitsBody');
+    var count = document.getElementById('resultCount');
+    var freshness = document.getElementById('freshness');
+    var empty = document.getElementById('empty');
+    var units = [];
+
+    function fmt(n) { return 'LKR ' + Math.round(n).toLocaleString('en-LK'); }
+    function pill(status) {
+      var s = (status || '').toLowerCase();
+      var label = s.charAt(0).toUpperCase() + s.slice(1);
+      return '<span class="status-pill status-pill--' + s + '">' + label + '</span>';
+    }
+
+    function render() {
+      var shown = 0;
+      tbody.innerHTML = '';
+      units.forEach(function (u) {
+        if (state.config !== 'all' && u.configuration !== state.config) return;
+        if (state.status !== 'all' && (u.status || '').toLowerCase() !== state.status) return;
+        var price = parseFloat(u.area) * parseFloat(u.pricePerSqFt);
+        var canEnquire = (u.status || '').toLowerCase() === 'available';
+        var row = document.createElement('tr');
+        row.innerHTML =
+          '<td><strong>' + u.title + '</strong></td>' +
+          '<td>' + (u.type || '-') + '</td>' +
+          '<td>' + (u.floor || '-') + '</td>' +
+          '<td>' + (u.configuration || '-') + '</td>' +
+          '<td>' + (u.area || '-') + '</td>' +
+          '<td>' + (isFinite(price) ? fmt(price) : '-') + '</td>' +
+          '<td>' + pill(u.status) + '</td>' +
+          '<td>' + (canEnquire ? '<button class="chip" data-enquire="' + u.title + '" data-config="' + u.configuration + '">Enquire</button>' : '<span style="color:var(--muted);font-size:12px">—</span>') + '</td>';
+        tbody.appendChild(row);
+        shown++;
+      });
+      count.textContent = 'Showing ' + shown + (shown === 1 ? ' unit' : ' units');
+      empty.hidden = shown > 0;
+    }
+
+    function wireFilters() {
+      document.querySelectorAll('.chip[data-filter]').forEach(function (c) {
+        c.addEventListener('click', function () {
+          var f = c.getAttribute('data-filter');
+          state[f] = c.getAttribute('data-value');
+          document.querySelectorAll('.chip[data-filter="' + f + '"]').forEach(function (x) {
+            x.setAttribute('aria-pressed', x === c ? 'true' : 'false');
+          });
+          render();
+        });
+      });
+      document.getElementById('resetFilters').addEventListener('click', reset);
+      document.getElementById('resetFromEmpty').addEventListener('click', reset);
+      function reset() {
+        state = { config: 'all', status: 'all' };
+        document.querySelectorAll('.chip[data-filter]').forEach(function (x) {
+          x.setAttribute('aria-pressed', x.getAttribute('data-value') === 'all' ? 'true' : 'false');
+        });
+        render();
+      }
+    }
+
+    // Enquiry dialog
+    var dlg = document.getElementById('unitDialog');
+    tbody.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-enquire]');
+      if (!btn) return;
+      document.getElementById('dlgTitle').textContent = 'Enquire about ' + btn.dataset.enquire;
+      document.getElementById('dlgSub').textContent = btn.dataset.config + ' at Aathavan, Dehiwala';
+      document.getElementById('dlgUnit').value = btn.dataset.enquire;
+      if (dlg.showModal) dlg.showModal();
+      else dlg.setAttribute('open', '');
+    });
+    document.getElementById('dlgClose').addEventListener('click', function () {
+      if (dlg.close) dlg.close(); else dlg.removeAttribute('open');
+    });
+    document.getElementById('unitForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var msg = document.getElementById('dlg-msg');
+      msg.hidden = true; msg.className = 'form__msg';
+      try {
+        var r = await fetch(this.action, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(Object.fromEntries(new FormData(this).entries()))
+        });
+        if (!r.ok) throw 0;
+        msg.hidden = false; msg.classList.add('form__msg--ok');
+        msg.textContent = 'Thanks. The Aathavan team will be in touch.';
+        this.reset();
+      } catch (_) {
+        msg.hidden = false; msg.classList.add('form__msg--err');
+        msg.textContent = 'Could not send. Please call +94 77 022 2000 or WhatsApp us.';
+      }
+    });
+
+    // Load units from the Unit Register
+    fetch('/data/units.json').then(function (r) { return r.json(); }).then(function (data) {
+      units = (data || []).filter(function (u) { return u.published !== false; });
+      // Freshness: the newest updatedAt sets what we show on top
+      var latest = units.reduce(function (acc, u) { return (u.updatedAt > acc) ? u.updatedAt : acc; }, 0);
+      var days = Math.floor((Date.now() - latest) / 86400000);
+      if (!latest || days > 30) {
+        freshness.textContent = 'STALE: Unit Register last updated ' + (latest ? days + ' days ago' : 'unknown') + '. Please call the Aathavan team for current availability.';
+        freshness.style.color = '#a3341f';
+      } else {
+        freshness.textContent = 'Verified by the Aathavan Unit Register · updated ' + new Date(latest).toLocaleDateString('en-LK');
+      }
+      render();
+      wireFilters();
+    }).catch(function () {
+      freshness.textContent = 'Unit register unavailable. Please call the Aathavan team for current availability.';
+      freshness.style.color = '#a3341f';
+      tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:40px">Register unavailable right now. Call +94 77 022 2000 or WhatsApp us for current availability.</td></tr>';
+    });
+  })();
+</script>
+<script src="/js/layout.js" defer></script>
+<script src="/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact · Excello</title>
+  <meta name="description" content="Contact Excello Developers in Mount Lavinia, Sri Lanka. Short enquiry form, phone, email and studio address. A WhatsApp draft is not a submitted enquiry; we confirm receipt once it is in.">
+  <link rel="canonical" href="https://excello.lk/contact/">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-route="contact">
+<main id="main">
+
+  <section class="hero hero--light">
+    <div class="hero__inner">
+      <p class="hero__kicker" style="color:var(--terra)">Contact</p>
+      <h1>Tell us about your dream.</h1>
+      <p>A few details are enough to begin. If you reach us outside working hours, we will come back to you within the next working day.</p>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="wrap">
+      <div class="grid grid-2" style="align-items:start">
+        <div>
+          <h2 class="section__h" style="font-size:28px">Send a short enquiry.</h2>
+          <p style="color:var(--muted);margin:12px 0 20px;max-width:50ch">We carry whatever context brought you here into the enquiry; you can edit it.</p>
+
+          <form class="form" id="contactForm" method="post" action="/api/enquiry" novalidate>
+            <input type="hidden" name="source" value="contact-page">
+            <input type="hidden" name="intent" id="cf-prefill-intent">
+            <div class="form__row">
+              <div class="field">
+                <label for="cf-name">Your name</label>
+                <input id="cf-name" name="name" type="text" autocomplete="name" required>
+                <div class="field__err">Please add your name.</div>
+              </div>
+              <div class="field">
+                <label for="cf-contact">Email or WhatsApp number</label>
+                <input id="cf-contact" name="contact" type="text" autocomplete="email tel" required>
+                <div class="field__err">Please share one preferred contact path.</div>
+              </div>
+            </div>
+            <div class="field">
+              <label for="cf-topic">What is this about?</label>
+              <select id="cf-topic" name="topic">
+                <option>A home design and build</option>
+                <option>Architecture or interior design only</option>
+                <option>Property development or land</option>
+                <option>Hospitality project</option>
+                <option>Aathavan apartment enquiry</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="cf-message">A short message</label>
+              <textarea id="cf-message" name="message" rows="5" placeholder="A few sentences about your land, your project or your question."></textarea>
+            </div>
+            <div>
+              <button type="submit" class="btn">Start a conversation</button>
+            </div>
+            <p class="form__msg" id="cf-msg" hidden></p>
+            <p class="form__note">A WhatsApp draft is an intention, not a submitted enquiry. We confirm receipt once a human on our side has it.</p>
+          </form>
+        </div>
+
+        <aside>
+          <h3 style="font-size:18px;font-weight:600;margin-bottom:10px">Reach us directly</h3>
+          <dl class="facts" style="grid-template-columns:1fr 1fr">
+            <div><dt>Call</dt><dd>+94 77 022 2000</dd></div>
+            <div><dt>Email</dt><dd>inquiry@excello.lk</dd></div>
+            <div><dt>WhatsApp</dt><dd><a href="https://wa.me/94770222000" style="color:var(--terra)">Open a WhatsApp draft</a></dd></div>
+            <div><dt>Hours</dt><dd>Mon–Sat, 9am–6pm</dd></div>
+          </dl>
+          <h3 style="font-size:18px;font-weight:600;margin:28px 0 10px">Studio address</h3>
+          <p style="color:var(--muted)">Excello Developers (Pvt) Ltd<br>No. 16, St Rita's Road<br>Mount Lavinia<br>Sri Lanka</p>
+          <p style="margin-top:16px">
+            <a class="btn btn--ghost" href="https://maps.google.com/?q=No+16+St+Ritas+Road+Mount+Lavinia+Sri+Lanka" target="_blank" rel="noopener">Open in Google Maps</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Pre-fill intent from ?intent=... query param if present
+  (function () {
+    var params = new URLSearchParams(location.search);
+    var intent = params.get('intent');
+    if (intent) {
+      var select = document.getElementById('cf-topic');
+      var opt = Array.from(select.options).find(function (o) { return o.text.toLowerCase().includes(intent.toLowerCase()); });
+      if (opt) select.value = opt.value;
+      document.getElementById('cf-prefill-intent').value = intent;
+    }
+
+    var f = document.getElementById('contactForm');
+    var msg = document.getElementById('cf-msg');
+    f.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      msg.hidden = true; msg.className = 'form__msg';
+      var bad = false;
+      ['cf-name', 'cf-contact'].forEach(function (id) {
+        var el = f.querySelector('#' + id);
+        el.closest('.field').classList.toggle('field--err', !el.value.trim());
+        if (!el.value.trim()) bad = true;
+      });
+      if (bad) { msg.hidden = false; msg.classList.add('form__msg--err'); msg.textContent = 'Please check the highlighted fields.'; return; }
+      try {
+        var r = await fetch(f.action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(f).entries())) });
+        if (!r.ok) throw 0;
+        msg.hidden = false; msg.classList.add('form__msg--ok');
+        msg.textContent = 'Thanks. Your enquiry has been sent to Excello.';
+        f.reset();
+      } catch (_) {
+        msg.hidden = false; msg.classList.add('form__msg--err');
+        msg.textContent = 'Your enquiry could not be sent. Please try again or contact us on WhatsApp.';
+      }
+    });
+  })();
+</script>
+<script src="/js/layout.js" defer></script>
+<script src="/js/main.js" defer></script>
+</body>
+</html>

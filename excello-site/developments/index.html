@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Property Development &amp; Consultation · Excello</title>
+  <meta name="description" content="Excello property development: lands, housing complexes, hospitality and apartments. Start with a free quick land check; a detailed feasibility study follows if the site deserves it.">
+  <link rel="canonical" href="https://excello.lk/developments/">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-route="developments">
+<main id="main">
+
+  <section class="hero">
+    <div class="hero__inner">
+      <p class="hero__kicker">Developments</p>
+      <h1>If you have land, start here.</h1>
+      <p>Excello's property development and consultation service covers lands, housing complexes, hospitality and apartments. The first conversation is a free quick land check. A detailed study follows separately, with a clear scope and fee.</p>
+      <div class="hero__actions">
+        <a class="btn btn--inverse" href="#free-check">Get a free quick land check</a>
+        <a class="btn btn--ghost" style="color:var(--inverse);border-color:var(--inverse)" href="#uses">See the four uses</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="uses" class="section section--light">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="section__kicker">Four uses</p>
+        <h2 class="section__h">What a piece of land can become.</h2>
+        <p class="section__lead">The site, the zoning and the local demand decide more than ambition does. Each of these starts with a different reading of the plot.</p>
+      </div>
+      <div class="grid grid-2">
+        <article class="card card--bare" style="border-top:2px solid var(--ink);padding-top:16px">
+          <h3 class="card__h">Lands</h3>
+          <p class="card__p">Early advice on acquisition, title, access, services and realistic use before you commit.</p>
+        </article>
+        <article class="card card--bare" style="border-top:2px solid var(--ink);padding-top:16px">
+          <h3 class="card__h">Housing complexes</h3>
+          <p class="card__p">Small to mid-scale residential developments: unit mix, shared facilities and buildable constraints.</p>
+        </article>
+        <article class="card card--bare" style="border-top:2px solid var(--ink);padding-top:16px">
+          <h3 class="card__h">Hospitality</h3>
+          <p class="card__p">Boutique and small hotels, coastal retreats, and clubhouses that answer to the site's atmosphere, not a chain's brief.</p>
+        </article>
+        <article class="card card--bare" style="border-top:2px solid var(--ink);padding-top:16px">
+          <h3 class="card__h">Apartments</h3>
+          <p class="card__p">Residential apartments: feasibility, concept, cost conversation, and the long view on operating life.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="section__kicker">Project Branding</p>
+        <h2 class="section__h">A development usually needs a name and an identity.</h2>
+        <p class="section__lead">Excello's project branding service is listed under <a href="/services/#branding" style="color:var(--terra);text-decoration:underline">Services</a>. On a development we coordinate the brand with the architecture and the sales story.</p>
+      </div>
+      <p><a class="btn btn--ghost" href="/services/#branding">Open project branding</a></p>
+    </div>
+  </section>
+
+  <!-- Free quick land feasibility form -->
+  <section id="free-check" class="section section--olive">
+    <div class="wrap">
+      <div class="section__head" style="max-width:70ch">
+        <p class="section__kicker">Entry service</p>
+        <h2 class="section__h">Free quick land check.</h2>
+        <p class="section__lead">A short review of your land to identify the questions worth studying properly. It is a free entry service, not a certified feasibility. Three brief stages; "Not sure" is a valid answer on each.</p>
+      </div>
+
+      <form class="form form--inline" id="landCheckForm" method="post" action="/api/land-check" novalidate>
+        <input type="hidden" name="source" value="free-land-check">
+
+        <fieldset style="border:1px solid #3a4740;padding:20px;border-radius:2px;display:grid;gap:14px">
+          <legend style="padding:0 10px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#c4ccc6">Stage 1 · The land</legend>
+          <div class="form__row">
+            <div class="field">
+              <label for="lc-location">Land location (town, GN area or landmark)</label>
+              <input id="lc-location" name="location" type="text" required>
+            </div>
+            <div class="field">
+              <label for="lc-size">Approximate size (perches, acres, or "Not sure")</label>
+              <input id="lc-size" name="size" type="text">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset style="border:1px solid #3a4740;padding:20px;border-radius:2px;display:grid;gap:14px">
+          <legend style="padding:0 10px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#c4ccc6">Stage 2 · What you are considering</legend>
+          <div class="field">
+            <label for="lc-intent">What would you like to explore?</label>
+            <select id="lc-intent" name="intent">
+              <option>Not sure yet</option>
+              <option>A home on this land</option>
+              <option>A housing complex</option>
+              <option>A boutique hotel or hospitality</option>
+              <option>An apartment development</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="lc-notes">Anything we should know? (optional)</label>
+            <textarea id="lc-notes" name="notes" rows="3"></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset style="border:1px solid #3a4740;padding:20px;border-radius:2px;display:grid;gap:14px">
+          <legend style="padding:0 10px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#c4ccc6">Stage 3 · How to reach you</legend>
+          <div class="form__row">
+            <div class="field">
+              <label for="lc-name">Your name</label>
+              <input id="lc-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="lc-contact">Email or WhatsApp number</label>
+              <input id="lc-contact" name="contact" type="text" autocomplete="email tel" required>
+            </div>
+          </div>
+        </fieldset>
+
+        <p style="font-size:13px;color:#c4ccc6">A free check identifies questions worth studying; it does not certify the land. A WhatsApp draft is not a submitted enquiry.</p>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button type="submit" class="btn btn--inverse">Send free land check</button>
+          <a class="btn btn--ghost" style="color:var(--inverse);border-color:var(--inverse)" href="/contact/">General enquiry</a>
+        </div>
+        <p class="form__msg" id="lc-msg" hidden></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="section__kicker">Current development</p>
+        <h2 class="section__h">Aathavan residences, Dehiwala.</h2>
+        <p class="section__lead">Excello's active residential development: 44 two- and three-bedroom homes at No. 6, Carron Place.</p>
+      </div>
+      <div class="grid grid-2" style="align-items:center">
+        <div class="media-band" style="aspect-ratio:4/3"><img src="https://framerusercontent.com/images/FcG46hh5Sp9MZuCheBn7BjEbK58.jpeg" alt="Aathavan apartments in Dehiwala."></div>
+        <div>
+          <p style="font-size:17px;color:var(--muted);max-width:60ch">Rooftop gym, community hall, solar infrastructure and rainwater management. Verified unit information is published on the availability page and updated when the register changes.</p>
+          <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn" href="/projects/aathavan-dehiwala-apartment/">Project detail</a>
+            <a class="btn btn--ghost" href="/aathavan-availability/">View available apartments</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<script>
+  // Simple front-end validation + submit for the free land check form
+  document.addEventListener('DOMContentLoaded', function () {
+    var f = document.getElementById('landCheckForm');
+    if (!f) return;
+    var msg = document.getElementById('lc-msg');
+    f.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      msg.hidden = true; msg.className = 'form__msg';
+      var required = ['lc-location', 'lc-name', 'lc-contact'];
+      var bad = false;
+      required.forEach(function (id) {
+        var el = f.querySelector('#' + id);
+        el.closest('.field').classList.toggle('field--err', !el.value.trim());
+        if (!el.value.trim()) bad = true;
+      });
+      if (bad) { msg.hidden = false; msg.classList.add('form__msg--err'); msg.textContent = 'Please add the required details.'; return; }
+      try {
+        var r = await fetch(f.action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(f).entries())) });
+        if (!r.ok) throw 0;
+        msg.hidden = false; msg.classList.add('form__msg--ok');
+        msg.textContent = 'Thanks. Your land check has been sent to Excello. A member of the team will be in touch.';
+        f.reset();
+      } catch (_) {
+        msg.hidden = false; msg.classList.add('form__msg--err');
+        msg.textContent = 'Your enquiry could not be sent. Please try again or contact us on WhatsApp.';
+      }
+    });
+  });
+</script>
+<script src="/js/layout.js" defer></script>
+<script src="/js/main.js" defer></script>
+</body>
+</html>

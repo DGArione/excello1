@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects · Excello</title>
+  <meta name="description" content="Excello's recent and current projects: Aathavan residences in Dehiwala, Panimozhi Club House in Kalkudah, Sea Esta Villas in Mount Lavinia, Café Kaapi, Bambalapitiya Residence and Rudra Wellness Retreat.">
+  <link rel="canonical" href="https://excello.lk/projects/">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-route="projects">
+<main id="main">
+
+  <section class="hero hero--light">
+    <div class="hero__inner">
+      <p class="hero__kicker" style="color:var(--terra)">Projects</p>
+      <h1>Projects we have taken from land, idea or brief to a place.</h1>
+      <p>A crawlable portfolio of real work. Filter by category or status; every link stays available for crawlers even when a filter is active.</p>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="wrap">
+      <div class="filterbar" role="toolbar" aria-label="Project filters">
+        <div class="filterbar__group" role="group" aria-label="Category">
+          <span class="filterbar__label">Category</span>
+          <button class="chip" aria-pressed="true" data-filter="category" data-value="all">All</button>
+          <button class="chip" aria-pressed="false" data-filter="category" data-value="Residential">Residential</button>
+          <button class="chip" aria-pressed="false" data-filter="category" data-value="Hospitality">Hospitality</button>
+          <button class="chip" aria-pressed="false" data-filter="category" data-value="Development">Development</button>
+          <button class="chip" aria-pressed="false" data-filter="category" data-value="Interior">Interior</button>
+        </div>
+        <div class="filterbar__group" role="group" aria-label="Status">
+          <span class="filterbar__label">Status</span>
+          <button class="chip" aria-pressed="true" data-filter="status" data-value="all">All</button>
+          <button class="chip" aria-pressed="false" data-filter="status" data-value="In Progress">In progress</button>
+          <button class="chip" aria-pressed="false" data-filter="status" data-value="Completed">Completed</button>
+        </div>
+        <button class="filterbar__reset" type="button" id="resetFilters">Reset</button>
+        <span class="filterbar__meta" id="resultCount" aria-live="polite">Showing 6 projects</span>
+      </div>
+
+      <div class="proj-grid" id="projGrid">
+        <a class="proj" href="/projects/aathavan-dehiwala-apartment/" data-category="Residential" data-status="In Progress">
+          <div class="proj__media"><img src="https://framerusercontent.com/images/FcG46hh5Sp9MZuCheBn7BjEbK58.jpeg" alt="Aathavan apartments." loading="lazy"></div>
+          <div class="proj__meta"><span>Residential · Dehiwala</span><span>In progress</span></div>
+          <h2 class="proj__h">Aathavan Apartments</h2>
+          <p class="proj__p">A family-oriented development of 44 residences at No. 6 Carron Place, Dehiwala.</p>
+        </a>
+        <a class="proj" href="/projects/panimozhi-club-house/" data-category="Hospitality" data-status="In Progress">
+          <div class="proj__media"><img src="https://framerusercontent.com/images/0iLOr9rsj2m4dSmGaFk0gpoZhs.jpeg" alt="Panimozhi Club House." loading="lazy"></div>
+          <div class="proj__meta"><span>Hospitality · Kalkudah</span><span>In progress</span></div>
+          <h2 class="proj__h">Panimozhi Club House</h2>
+          <p class="proj__p">A 15-room coastal retreat shaped by the Eastern Province shoreline.</p>
+        </a>
+        <a class="proj" href="/projects/sea-esta-villas-mount-lavinia/" data-category="Development" data-status="Completed">
+          <div class="proj__media"><img src="https://framerusercontent.com/images/l2BE3jZXIWd360krZMA78t1WmpQ.jpeg" alt="Sea Esta Villas, Mount Lavinia." loading="lazy"></div>
+          <div class="proj__meta"><span>Development · Mount Lavinia</span><span>Completed · 2022</span></div>
+          <h2 class="proj__h">Sea Esta Villas</h2>
+          <p class="proj__p">A coastal residential project balancing privacy, efficiency and a warm material character.</p>
+        </a>
+        <a class="proj" href="/projects/cafe-kaapi/" data-category="Interior" data-status="Completed">
+          <div class="proj__media"><img src="/img/band.webp" alt="Café Kaapi interior." loading="lazy"></div>
+          <div class="proj__meta"><span>Interior &amp; branding · Colombo</span><span>Completed</span></div>
+          <h2 class="proj__h">Café Kaapi</h2>
+          <p class="proj__p">Interior, construction and branding for a small-footprint café.</p>
+        </a>
+        <a class="proj" href="/projects/bambalapitiya-residence/" data-category="Residential" data-status="Completed">
+          <div class="proj__media"><img src="/img/hero-poster.webp" alt="Bambalapitiya residence." loading="lazy"></div>
+          <div class="proj__meta"><span>Residential · Bambalapitiya</span><span>Completed</span></div>
+          <h2 class="proj__h">Bambalapitiya Residence</h2>
+          <p class="proj__p">A home on an urban plot, planned around light, privacy and family routine.</p>
+        </a>
+        <a class="proj" href="/projects/rudra-wellness-retreat-kalkudah/" data-category="Hospitality" data-status="In Progress">
+          <div class="proj__media"><img src="/img/hero.webp" alt="Rudra Wellness Retreat." loading="lazy"></div>
+          <div class="proj__meta"><span>Hospitality · Kalkudah</span><span>In progress</span></div>
+          <h2 class="proj__h">Rudra Wellness Retreat</h2>
+          <p class="proj__p">A hospitality project with a verified wellness scope on the Eastern coast.</p>
+        </a>
+      </div>
+
+      <div class="empty" id="empty" hidden>No projects match these filters. <button type="button" class="filterbar__reset" id="resetFromEmpty">Reset filters</button></div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  (function () {
+    var state = { category: 'all', status: 'all' };
+    var grid = document.getElementById('projGrid');
+    var empty = document.getElementById('empty');
+    var count = document.getElementById('resultCount');
+    var chips = document.querySelectorAll('.chip[data-filter]');
+    chips.forEach(function (c) {
+      c.addEventListener('click', function () {
+        var filter = c.getAttribute('data-filter');
+        var value = c.getAttribute('data-value');
+        state[filter] = value;
+        document.querySelectorAll('.chip[data-filter="' + filter + '"]').forEach(function (x) {
+          x.setAttribute('aria-pressed', x === c ? 'true' : 'false');
+        });
+        apply();
+      });
+    });
+    function reset() {
+      state = { category: 'all', status: 'all' };
+      document.querySelectorAll('.chip[data-filter]').forEach(function (x) {
+        x.setAttribute('aria-pressed', x.getAttribute('data-value') === 'all' ? 'true' : 'false');
+      });
+      apply();
+    }
+    document.getElementById('resetFilters').addEventListener('click', reset);
+    document.getElementById('resetFromEmpty').addEventListener('click', reset);
+    function apply() {
+      var shown = 0;
+      Array.from(grid.children).forEach(function (card) {
+        var ok = (state.category === 'all' || card.dataset.category === state.category) &&
+                 (state.status === 'all'   || card.dataset.status   === state.status);
+        card.style.display = ok ? '' : 'none';
+        if (ok) shown++;
+      });
+      count.textContent = 'Showing ' + shown + (shown === 1 ? ' project' : ' projects');
+      empty.hidden = shown > 0;
+    }
+  })();
+</script>
+<script src="/js/layout.js" defer></script>
+<script src="/js/main.js" defer></script>
+</body>
+</html>

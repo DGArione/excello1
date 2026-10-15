@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /uploads/
+Disallow: /api/
+
+Sitemap: https://excello.lk/sitemap.xml

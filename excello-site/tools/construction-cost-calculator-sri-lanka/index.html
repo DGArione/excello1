@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Construction cost calculator (Sri Lanka) · Excello</title>
+  <meta name="description" content="Excello's construction cost calculator for Sri Lanka. Enter a project type, finish level and floor area; see a planning-stage estimate with its assumptions clearly listed. The estimate is a conversation starter, not a quote.">
+  <link rel="canonical" href="https://excello.lk/tools/construction-cost-calculator-sri-lanka/">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-route="tools">
+<main id="main">
+
+  <div class="wrap"><p class="crumb">Tools / Construction cost calculator</p></div>
+
+  <section class="hero hero--cream" style="padding-top:24px">
+    <div class="hero__inner">
+      <p class="hero__kicker" style="color:var(--terra)">Tool · Planning estimate</p>
+      <h1>Construction cost calculator.</h1>
+      <p>A sequential form that gives you an early-planning estimate for a project in Sri Lanka, with its assumptions on the same screen. It is not a quote.</p>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="wrap">
+      <div class="grid grid-2" style="align-items:start;gap:48px">
+        <form class="form" id="calcForm" novalidate>
+          <div class="field">
+            <label for="c-type">Project type</label>
+            <select id="c-type" name="type">
+              <option value="house">A single home</option>
+              <option value="small-apt">A small apartment building (up to 4 floors)</option>
+              <option value="villa">A villa or holiday home</option>
+              <option value="hospitality">A small hospitality project</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="c-finish">Finish level</label>
+            <select id="c-finish" name="finish">
+              <option value="18500" data-label="Essential">Essential · LKR 18,500 / sq ft</option>
+              <option value="24000" data-label="Modern" selected>Modern · LKR 24,000 / sq ft</option>
+              <option value="32000" data-label="Premium">Premium · LKR 32,000 / sq ft</option>
+              <option value="42000" data-label="Luxury">Luxury · LKR 42,000 / sq ft</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="c-area">Approximate floor area (sq ft)</label>
+            <input id="c-area" name="area" type="number" min="400" step="10" value="2000" required>
+          </div>
+
+          <div class="field">
+            <label for="c-contingency">Contingency</label>
+            <select id="c-contingency" name="contingency">
+              <option value="0.05">5%</option>
+              <option value="0.10" selected>10% (recommended)</option>
+              <option value="0.15">15%</option>
+            </select>
+          </div>
+
+          <div>
+            <button type="button" class="btn" id="c-calc">Calculate estimate</button>
+            <button type="button" class="btn btn--ghost" id="c-reset">Reset</button>
+          </div>
+        </form>
+
+        <aside aria-label="Estimate">
+          <div class="card" style="padding:24px">
+            <p class="card__kicker">Planning estimate</p>
+            <p id="c-sum" style="font-size:36px;font-weight:600;letter-spacing:-0.015em;line-height:1.1">LKR —</p>
+            <p id="c-range" style="color:var(--muted);font-size:14px">A range is more honest than a single number: real projects land ±15% of a planning estimate.</p>
+
+            <h3 style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:16px">Assumptions</h3>
+            <ul id="c-assume" style="font-size:13.5px;line-height:1.7;color:var(--ink);margin:6px 0 0 18px">
+              <li>Rates are for construction only, excluding land, consultants and statutory fees.</li>
+              <li>Finish rates are indicative, reviewed quarterly. Current rates as of this quarter.</li>
+              <li>Air conditioning, solar, pools and external hard works are excluded.</li>
+              <li>Contingency is a sum you plan to spend; carry it in the budget.</li>
+            </ul>
+            <p style="margin-top:16px"><span style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);font-weight:700">Assumptions version</span><br>v2026.10 · Published 14 October 2026</p>
+            <p style="margin-top:16px"><a class="btn btn--ghost" href="/contact/?intent=Cost-estimate">Share this with us</a></p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="wrap">
+      <div class="grid grid-2" style="align-items:start">
+        <div>
+          <p class="section__kicker">Context</p>
+          <h2 class="section__h">An estimate is a starting conversation.</h2>
+        </div>
+        <div>
+          <p style="color:var(--muted);max-width:60ch">The calculator uses current indicative rates for the Sri Lankan market. Actual cost depends on site conditions, decisions during design and the exact scope. Read our <a href="/insights/construction-cost-per-square-foot-sri-lanka/" style="color:var(--terra);text-decoration:underline">cost-per-square-foot article</a> for what the number does and does not include.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  (function () {
+    var form = document.getElementById('calcForm');
+    var sumEl = document.getElementById('c-sum');
+    var rangeEl = document.getElementById('c-range');
+
+    function fmt(n) {
+      // Avoid relying on narrow Intl impls — format with thousands separators.
+      return 'LKR ' + Math.round(n).toLocaleString('en-LK');
+    }
+
+    function calc() {
+      var finish = parseFloat(form['finish'].value);
+      var area = parseFloat(form['area'].value);
+      var contingency = parseFloat(form['contingency'].value);
+      if (!finish || !area || isNaN(contingency)) return;
+      var base = finish * area;
+      var withContingency = base * (1 + contingency);
+      var low = withContingency * 0.9;
+      var high = withContingency * 1.15;
+      sumEl.textContent = fmt(withContingency);
+      rangeEl.textContent = 'Planning range: ' + fmt(low) + '  –  ' + fmt(high) + '. A real project should budget for the top of that range.';
+    }
+
+    document.getElementById('c-calc').addEventListener('click', calc);
+    document.getElementById('c-reset').addEventListener('click', function () {
+      form.reset();
+      sumEl.textContent = 'LKR —';
+      rangeEl.textContent = 'A range is more honest than a single number: real projects land ±15% of a planning estimate.';
+    });
+
+    // First calc so a visitor sees a result immediately
+    calc();
+  })();
+</script>
+<script src="/js/layout.js" defer></script>
+<script src="/js/main.js" defer></script>
+</body>
+</html>

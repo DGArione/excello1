@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://excello.lk/</loc><priority>1.00</priority></url>
+  <url><loc>https://excello.lk/services/</loc><priority>0.90</priority></url>
+  <url><loc>https://excello.lk/developments/</loc><priority>0.90</priority></url>
+  <url><loc>https://excello.lk/projects/</loc><priority>0.80</priority></url>
+  <url><loc>https://excello.lk/team/</loc><priority>0.70</priority></url>
+  <url><loc>https://excello.lk/process/</loc><priority>0.70</priority></url>
+  <url><loc>https://excello.lk/insights/</loc><priority>0.70</priority></url>
+  <url><loc>https://excello.lk/contact/</loc><priority>0.80</priority></url>
+
+  <url><loc>https://excello.lk/projects/aathavan-dehiwala-apartment/</loc></url>
+  <url><loc>https://excello.lk/projects/panimozhi-club-house/</loc></url>
+  <url><loc>https://excello.lk/projects/sea-esta-villas-mount-lavinia/</loc></url>
+  <url><loc>https://excello.lk/projects/cafe-kaapi/</loc></url>
+  <url><loc>https://excello.lk/projects/bambalapitiya-residence/</loc></url>
+  <url><loc>https://excello.lk/projects/rudra-wellness-retreat-kalkudah/</loc></url>
+
+  <url><loc>https://excello.lk/insights/building-through-market-uncertainty/</loc></url>
+  <url><loc>https://excello.lk/insights/small-land-house-design-sri-lanka/</loc></url>
+  <url><loc>https://excello.lk/insights/construction-cost-per-square-foot-sri-lanka/</loc></url>
+  <url><loc>https://excello.lk/insights/luxury-living-creating-a-high-end-look-on-a-budget/</loc></url>
+  <url><loc>https://excello.lk/insights/aathavan-residential-project-launched/</loc></url>
+  <url><loc>https://excello.lk/insights/design-build-vs-architect-contractor-sri-lanka/</loc></url>
+
+  <url><loc>https://excello.lk/tools/construction-cost-calculator-sri-lanka/</loc></url>
+  <url><loc>https://excello.lk/aathavan-availability/</loc></url>
+
+  <url><loc>https://excello.lk/privacy-policy/</loc><priority>0.30</priority></url>
+  <url><loc>https://excello.lk/cookie-policy/</loc><priority>0.30</priority></url>
+  <url><loc>https://excello.lk/terms-and-conditions/</loc><priority>0.30</priority></url>
+</urlset>

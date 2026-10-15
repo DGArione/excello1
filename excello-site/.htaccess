@@ -16,3 +16,17 @@
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
 </IfModule>
+
+# Route consolidation per 14 October 2026 master guide
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Services sub-paths folded into /services sections
+  RewriteRule ^services/homes/?$        /services/#homes       [R=301,L]
+  # Apartments and hospitality move under Developments
+  RewriteRule ^services/apartments/?$   /developments/         [R=301,L]
+  RewriteRule ^services/hospitality/?$  /developments/         [R=301,L]
+  # Retired homev2 points to the current home
+  RewriteRule ^homev2/?$                /                      [R=301,L]
+  # About folds into Team
+  RewriteRule ^about(/.*)?$             /team/                 [R=301,L]
+</IfModule>

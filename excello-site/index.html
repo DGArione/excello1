@@ -1,207 +1,218 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Excello Developers — Architecture, Design and Build in Sri Lanka</title>
-  <meta name="description" content="Excello is a boutique architecture, interiors and design-and-build studio in Mount Lavinia, Colombo, guiding homeowners, hospitality teams and developers from an early idea to a buildable, useful place.">
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-  <meta name="theme-color" content="#17150f">
+  <title>Excello Developers · Design, build and development in Sri Lanka</title>
+  <meta name="description" content="Excello is a design and build studio in Mount Lavinia, Sri Lanka. We guide homeowners, property teams and apartment buyers from land to a finished place with architecture, construction, property development and the Aathavan residences.">
+  <link rel="canonical" href="https://excello.lk/">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
-  <script src="js/layout.js"></script>
+<body data-route="home">
 
-  <main>
-    <!-- HERO -->
-    <section class="hero hero--seq container" data-seq-scene>
-      <div class="hero__bg seq" data-seq="img/hero-seq" data-frames="288" data-ext="webp" data-seq-mode="hero" data-seq-end="+=1000%">
-        <img class="hero__poster" data-hero-poster src="img/hero-poster@2x.webp" alt="Excello finished residence interior" width="1920" height="1080" fetchpriority="high" decoding="async">
-        <canvas class="seq__canvas"></canvas>
+<main id="main">
+
+  <!-- 1. Hero (dark architectural moment) -->
+  <section class="hero">
+    <div class="hero__inner">
+      <p class="hero__kicker">Design, development &amp; build · Sri Lanka</p>
+      <h1>Tell us about your&nbsp;dream.</h1>
+      <p>Excello helps homeowners, property teams and apartment buyers in Sri Lanka turn a piece of land, an idea or a listed unit into a finished place. Architecture and interior design, build and construction, property development and the Aathavan residences.</p>
+      <div class="hero__actions">
+        <a class="btn btn--inverse" href="/contact/">Tell us about your dream</a>
+        <a class="btn btn--ghost" style="color:var(--inverse);border-color:var(--inverse)" href="/developments/#free-check">Get a free quick land check</a>
       </div>
-      <div class="hero__clouds" id="heroClouds" aria-hidden="true">
-        <span class="hero__cloud hc1"></span><span class="hero__cloud hc2"></span>
-        <span class="hero__cloud hc3"></span><span class="hero__cloud hc4"></span>
-        <span class="hero__cloud hc5"></span>
-      </div>
-      <div class="hero__content">
-        <p class="label hero__label" data-hero-fade>Boutique Design &amp; Build · Mount Lavinia, Colombo</p>
-        <div class="seq__loader" data-seq-loader aria-hidden="true">Loading <b>0</b>%</div>
-        <h1 class="h-display hero__title" data-split>Thoughtfully designed. <em>Precisely built.</em></h1>
-        <div class="hero__bottom">
-          <div>
-            <p class="hero__sub" data-hero-fade>Excello is a boutique architecture, interiors and design-and-build studio in Mount Lavinia, Colombo, guiding homeowners, hospitality teams and developers from an early idea to a buildable, useful place.</p>
-            <div class="hero__actions" data-hero-fade>
-              <a class="btn btn--solid" href="projects" data-magnetic>Explore projects <svg class="arrow" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 13 13 1M4 1h9v9"/></svg></a>
-              <a class="btn" href="contact" data-magnetic>Start a project <svg class="arrow" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 13 13 1M4 1h9v9"/></svg></a>
-            </div>
-          </div>
-          <div class="hero__scroll" data-hero-fade><i></i> Scroll</div>
-        </div>
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- MANIFESTO -->
-    <section class="section container manifesto" data-hero-next>
-      <div class="grid">
-        <div style="grid-column: 1 / span 3;" class="manifesto__aside">
-          <p class="label" data-reveal><span class="num">(01)</span>The studio</p>
-        </div>
-        <div style="grid-column: 4 / span 9;">
-          <p class="manifesto__text" data-split="words-scrub">One studio for architecture, interiors, construction and property — shaped around people, place and purpose.</p>
-          <div style="margin-top: 48px;" data-reveal>
-            <a class="link" href="about">Meet the studio</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FEATURED PROJECT (admin: highlighted project) -->
-    <div id="homeFeatured"><!--HOME_FEATURED--></div>
-
-    <!-- SELECTED WORK (admin: two selected projects) -->
-    <div id="homeSelected"><!--HOME_SELECTED--></div>
-
-    <!-- SERVICES -->
-    <section class="section container">
+  <!-- 2. Your land, your plans (light, open) -->
+  <section class="section section--light">
+    <div class="wrap">
       <div class="section__head">
+        <p class="section__kicker">Your land, your plans</p>
+        <h2 class="section__h">Start from the site, not from a template.</h2>
+        <p class="section__lead">A home, a small development or a hospitality project each ask different questions of the same piece of land. We begin with what the site allows, what you need from it, and what it should make possible for the next twenty years.</p>
+      </div>
+      <div class="journey">
+        <div class="journey__step">Your land<small>The site and its situation.</small></div>
+        <div class="journey__step">Your possibilities<small>Homes, development or hospitality.</small></div>
+        <div class="journey__step">Your investment<small>Options, limits, and what is realistic.</small></div>
+        <div class="journey__step">Our process and people<small>Who helps and how we decide.</small></div>
+        <div class="journey__step">Relevant proof<small>Projects and useful advice.</small></div>
+        <div class="journey__step">Your next step<small>A short conversation or a useful tool.</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Project choices -->
+  <section class="section section--cream">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="section__kicker">Project choices</p>
+        <h2 class="section__h">Three everyday starting points.</h2>
+        <p class="section__lead">People reach Excello from different places. Each route has its own entry on this site; carry whatever context brought you here into the enquiry.</p>
+      </div>
+      <div class="choices">
+        <article class="choice">
+          <div class="choice__media"><img src="https://framerusercontent.com/images/l2BE3jZXIWd360krZMA78t1WmpQ.jpeg" alt="A completed home in Mount Lavinia with a composed, calm elevation." loading="lazy"></div>
+          <h3 class="choice__h">Homes</h3>
+          <p class="choice__p">Architecture, interior design and build for a single home. Starts with what your land can hold and how you want to live in it.</p>
+          <a class="choice__link" href="/services/#homes">Explore Homes →</a>
+        </article>
+        <article class="choice">
+          <div class="choice__media"><img src="https://framerusercontent.com/images/FcG46hh5Sp9MZuCheBn7BjEbK58.jpeg" alt="Aathavan apartments: a residential building in Dehiwala planned for family living." loading="lazy"></div>
+          <h3 class="choice__h">Apartments</h3>
+          <p class="choice__p">Buying into the Aathavan residences in Dehiwala, or an apartment development on your land. Verified unit information where it exists.</p>
+          <a class="choice__link" href="/aathavan-availability/">View available apartments →</a>
+        </article>
+        <article class="choice">
+          <div class="choice__media"><img src="https://framerusercontent.com/images/0iLOr9rsj2m4dSmGaFk0gpoZhs.jpeg" alt="A coastal hospitality project on the Eastern Province shoreline." loading="lazy"></div>
+          <h3 class="choice__h">Hospitality &amp; land</h3>
+          <p class="choice__p">Lands, housing complexes, hospitality: a free quick land check is the first conversation. A detailed feasibility study follows if the site deserves it.</p>
+          <a class="choice__link" href="/developments/">Property development →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Your investment (concise) -->
+  <section class="section section--light">
+    <div class="wrap">
+      <div class="grid grid-2" style="align-items:start">
         <div>
-          <p class="label" data-reveal><span class="num">(03)</span>Four ways in</p>
-          <h2 class="h-1" data-split>One practice. <em>Every</em> discipline.</h2>
+          <p class="section__kicker">Your investment</p>
+          <h2 class="section__h">What this costs is the next question, not the first one.</h2>
         </div>
-        <a class="link" href="services" data-reveal>All services</a>
-      </div>
-
-      <div class="services" id="homeServices">
-        <!--HOME_SERVICES-->
-      </div>
-
-    </section>
-
-    <!-- PROJECTS: HORIZONTAL SCROLL -->
-    <section class="hscroll">
-      <div class="hscroll__motif" aria-hidden="true">
-        <svg viewBox="0 0 600 600" fill="none" stroke="var(--bronze)" stroke-width="0.9">
-          <g class="motif-rot">
-            <circle cx="300" cy="300" r="70"/>
-            <circle cx="300" cy="300" r="120" stroke-opacity="0.7"/>
-            <circle cx="300" cy="300" r="175" stroke-opacity="0.5"/>
-            <circle cx="300" cy="300" r="235" stroke-opacity="0.32"/>
-            <g stroke-opacity="0.6">
-              <line x1="300" y1="20" x2="300" y2="90"/>
-              <line x1="300" y1="510" x2="300" y2="580"/>
-              <line x1="20" y1="300" x2="90" y2="300"/>
-              <line x1="510" y1="300" x2="580" y2="300"/>
-              <line x1="103" y1="103" x2="152" y2="152"/>
-              <line x1="448" y1="448" x2="497" y2="497"/>
-              <line x1="497" y1="103" x2="448" y2="152"/>
-              <line x1="152" y1="448" x2="103" y2="497"/>
-            </g>
-          </g>
-        </svg>
-      </div>
-      <div class="hscroll__pin">
-        <div class="hscroll__head">
-          <div>
-            <p class="label" data-reveal><span class="num">(04)</span>Selected projects</p>
-            <h2 class="h-2" data-split>Places shaped by a <em>clear idea</em></h2>
-          </div>
-          <a class="link" href="projects" data-reveal>All projects</a>
-        </div>
-        <div class="hscroll__track">
-          <!--HOME_HSCROLL-->
-          <div class="panel panel__end">
-            <p class="h-3" data-reveal>Explore the full portfolio of residential, hospitality and commercial work across Sri Lanka.</p>
-            <a class="btn" href="projects" style="margin-top: 28px;" data-magnetic data-reveal>View all projects <svg class="arrow" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 13 13 1M4 1h9v9"/></svg></a>
+        <div>
+          <p style="font-size:17px;color:var(--muted);max-width:60ch">We give you a defensible early estimate rather than a round number. A construction cost calculator is published with its assumptions. On a project, we test design decisions against life, maintenance and value instead of defaulting to the cheapest line item.</p>
+          <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn btn--ghost" href="/tools/construction-cost-calculator-sri-lanka/">Open the cost calculator</a>
+            <a class="btn" href="/insights/construction-cost-per-square-foot-sri-lanka/">Cost per square foot</a>
           </div>
         </div>
-      </div>
-      <div class="hscroll__progress"><i></i></div>
-    </section>
-
-    <!-- CLOUD ENVIRONMENT -->
-    <section class="sky" data-parallax-root>
-      <div class="sky__sun" data-py="8" aria-hidden="true"></div>
-      <div class="sky__clouds" aria-hidden="true">
-        <span class="cloud cloud--1" data-py="18" data-px="6"></span>
-        <span class="cloud cloud--2" data-py="26" data-px="-8"></span>
-        <span class="cloud cloud--3" data-py="12" data-px="4"></span>
-        <span class="cloud cloud--4" data-py="32" data-px="-6"></span>
-        <span class="cloud cloud--5" data-py="20" data-px="7"></span>
-        <span class="cloud cloud--6" data-py="14" data-px="-4"></span>
-      </div>
-      <div class="sky__inner">
-        <p class="label" data-reveal>A working philosophy</p>
-        <h2 class="h-display" data-split>We design for longevity, <em>not novelty</em></h2>
-        <p class="lede" data-reveal style="max-width: 42ch;">Climate-responsive design, material honesty and timeless proportion are practical choices. They help buildings work harder, age with dignity and remain useful beyond the moment they are made.</p>
-      </div>
-    </section>
-
-    <!-- CINEMATIC BAND + overlap: the stats panel slides up over the band -->
-    <div class="stack">
-      <section class="seq-band is-sticky" data-seq-scene>
-        <div class="seq-band__bg" aria-hidden="true">
-          <img src="img/band.webp" alt="" width="1920" height="1080" loading="lazy" decoding="async">
-        </div>
-        <div class="seq-band__overlay">
-          <p class="label" style="color: rgba(248,244,236,0.82);" data-reveal><span class="num">(—)</span>In motion</p>
-          <h2 class="h-1" data-split>From foundation <em>to finish</em></h2>
-          <div class="seq-band__row" style="margin-top: 26px;">
-            <p class="body" data-reveal>Every Excello project is shaped around people, place and purpose, and coordinated from the first question to the final handover, so nothing is lost between the drawings and the finished place.</p>
-            <a class="btn" href="projects" data-magnetic data-reveal style="color: var(--cream); border-color: rgba(248,244,236,0.5);">See the portfolio <svg class="arrow" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 13 13 1M4 1h9v9"/></svg></a>
-          </div>
-        </div>
-      </section>
-
-      <!-- STATS (rises up over the band) -->
-      <section class="section container stats-over" data-overlap>
-        <div class="stats"><!--HOME_STATS--></div>
-      </section>
-    </div>
-
-    <!-- MARQUEE -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee__track">
-        <span class="marquee__item">Architecture</span>
-        <span class="marquee__item">Interior Design</span>
-        <span class="marquee__item">Design and Build</span>
-        <span class="marquee__item">Construction</span>
-        <span class="marquee__item">Development</span>
       </div>
     </div>
+  </section>
 
-
-
-    <!-- QUOTE -->
-    <section class="section container">
-      <div class="quote">
-        <div class="quote__mark" data-reveal>“</div>
-        <p class="lede" data-split>Clarity from the first conversation to the final handover.</p>
-        <p class="label quote__cite" data-reveal>Subash Thavarajasingam · Founder &amp; Chief Executive Officer</p>
+  <!-- 5. Process + team (dark olive) -->
+  <section class="section section--olive">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="section__kicker">Our process and people</p>
+        <h2 class="section__h">Six steps, in plain language.</h2>
+        <p class="section__lead">Nothing on this site hides behind jargon. The six steps are the same whether you are planning a home, a boutique hotel or an apartment block; what changes is their weight and sequence.</p>
       </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="section container cta">
-      <p class="label" data-reveal><span class="num">(05)</span>Start a conversation</p>
-      <h2 class="h-display" data-split>Begin with <em>clarity</em></h2>
-      <p class="lede" data-reveal style="max-width: 46ch; margin: 24px auto 48px;">Tell us about the site, the project and what you hope to create. We'll help you identify the right first step.</p>
-      <div class="cta__row" data-reveal>
-        <a class="btn btn--solid" href="contact" data-magnetic>Start a conversation <svg class="arrow" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 13 13 1M4 1h9v9"/></svg></a>
-        <a class="btn" href="tel:+94770222000" data-magnetic>+94 77 022 2000</a>
+      <div class="steps">
+        <div class="step"><div class="step__n">01</div><div><h3 class="step__h">First conversation</h3><p class="step__p">We listen to the aspiration, the site, the budget range and the deadlines. If we are not the right studio, we say so.</p></div></div>
+        <div class="step"><div class="step__n">02</div><div><h3 class="step__h">Site and brief</h3><p class="step__p">A written brief and site review. For development enquiries, this is the free quick land check.</p></div></div>
+        <div class="step"><div class="step__n">03</div><div><h3 class="step__h">Design direction</h3><p class="step__p">Concept drawings, material direction and a cost conversation grounded in current rates.</p></div></div>
+        <div class="step"><div class="step__n">04</div><div><h3 class="step__h">Developed design</h3><p class="step__p">Drawings and specifications ready to coordinate with structural, services and build teams.</p></div></div>
+        <div class="step"><div class="step__n">05</div><div><h3 class="step__h">Build coordination</h3><p class="step__p">Design intent carried onto site. We stay close to decisions that affect quality and lifetime.</p></div></div>
+        <div class="step"><div class="step__n">06</div><div><h3 class="step__h">Handover and after</h3><p class="step__p">A proper handover, a defects period, and a studio you can call back when the next decision comes up.</p></div></div>
       </div>
-    </section>
-  </main>
+      <div style="margin-top:28px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn btn--inverse" href="/process/">Read the detailed process</a>
+        <a class="btn btn--ghost" style="color:var(--inverse);border-color:var(--inverse)" href="/team/">Meet the team</a>
+      </div>
+    </div>
+  </section>
 
-  <script src="js/vendor/gsap.min.js"></script>
-  <script src="js/vendor/ScrollTrigger.min.js"></script>
-  <script src="js/vendor/SplitText.min.js"></script>
-  <script src="js/vendor/lenis.min.js"></script>
-  <script src="js/main.js"></script>
+  <!-- 6. Projects (light proof) -->
+  <section class="section section--light">
+    <div class="wrap">
+      <div class="section__head" style="display:flex;justify-content:space-between;align-items:end;max-width:none;gap:16px;flex-wrap:wrap">
+        <div>
+          <p class="section__kicker">Relevant proof</p>
+          <h2 class="section__h">Recent projects.</h2>
+        </div>
+        <a class="btn btn--ghost" href="/projects/">View all projects</a>
+      </div>
+      <div class="proj-grid">
+        <a class="proj" href="/projects/aathavan-dehiwala-apartment/">
+          <div class="proj__media"><img src="https://framerusercontent.com/images/FcG46hh5Sp9MZuCheBn7BjEbK58.jpeg" alt="Aathavan apartments in Dehiwala." loading="lazy"></div>
+          <div class="proj__meta"><span>Residential</span><span>In progress</span></div>
+          <h3 class="proj__h">Aathavan, Dehiwala</h3>
+          <p class="proj__p">A family-oriented development of 44 residences with rooftop amenities.</p>
+        </a>
+        <a class="proj" href="/projects/panimozhi-club-house/">
+          <div class="proj__media"><img src="https://framerusercontent.com/images/0iLOr9rsj2m4dSmGaFk0gpoZhs.jpeg" alt="Panimozhi Club House, Kalkudah." loading="lazy"></div>
+          <div class="proj__meta"><span>Hospitality</span><span>In progress</span></div>
+          <h3 class="proj__h">Panimozhi Club House</h3>
+          <p class="proj__p">A 15-room coastal retreat close to the Kalkudah shoreline.</p>
+        </a>
+        <a class="proj" href="/projects/sea-esta-villas-mount-lavinia/">
+          <div class="proj__media"><img src="https://framerusercontent.com/images/l2BE3jZXIWd360krZMA78t1WmpQ.jpeg" alt="Sea Esta villas in Mount Lavinia." loading="lazy"></div>
+          <div class="proj__meta"><span>Development</span><span>Completed, 2022</span></div>
+          <h3 class="proj__h">Sea Esta Villas</h3>
+          <p class="proj__p">A coastal residential project with a warm material character.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Insights (combined with client experiences) -->
+  <section class="section section--cream">
+    <div class="wrap">
+      <div class="section__head" style="display:flex;justify-content:space-between;align-items:end;max-width:none;gap:16px;flex-wrap:wrap">
+        <div>
+          <p class="section__kicker">Insights &amp; client experience</p>
+          <h2 class="section__h">Useful before you commit.</h2>
+        </div>
+        <a class="btn btn--ghost" href="/insights/">All insights</a>
+      </div>
+      <div class="insight-list">
+        <a class="insight" href="/insights/construction-cost-per-square-foot-sri-lanka/">
+          <span class="insight__kicker">Cost planning</span>
+          <h3 class="insight__h">Construction cost per square foot in Sri Lanka</h3>
+          <p class="insight__p">What a per-sqft figure includes, what it leaves out, and how to use the calculator honestly.</p>
+        </a>
+        <a class="insight" href="/insights/small-land-house-design-sri-lanka/">
+          <span class="insight__kicker">Small plots</span>
+          <h3 class="insight__h">Planning a home on a small plot</h3>
+          <p class="insight__p">Setbacks, light, parking and privacy on tight urban land.</p>
+        </a>
+        <a class="insight" href="/insights/design-build-vs-architect-contractor-sri-lanka/">
+          <span class="insight__kicker">Delivery</span>
+          <h3 class="insight__h">Design-and-build or separate appointments</h3>
+          <p class="insight__p">What the two routes actually mean and when each is the right call.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Dark closing enquiry -->
+  <section class="section section--dark" aria-labelledby="h-next">
+    <div class="wrap">
+      <div class="grid grid-2" style="align-items:center">
+        <div>
+          <p class="section__kicker">Your next step</p>
+          <h2 class="section__h" id="h-next">A short conversation is enough to begin.</h2>
+          <p class="section__lead">A WhatsApp draft or an email reaches a responsible person on our side. We confirm receipt once it is in; we do not promise a response time we cannot keep.</p>
+          <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn btn--inverse" href="/contact/">Tell us about your dream</a>
+            <a class="btn btn--ghost" style="color:var(--inverse);border-color:var(--inverse)" href="/developments/#free-check">Free quick land check</a>
+          </div>
+        </div>
+        <div>
+          <dl class="facts" style="border-color:#3a4740">
+            <div><dt>Call</dt><dd style="color:var(--inverse)">+94 77 022 2000</dd></div>
+            <div><dt>Email</dt><dd style="color:var(--inverse)">inquiry@excello.lk</dd></div>
+            <div><dt>Studio</dt><dd style="color:var(--inverse)">Mount Lavinia</dd></div>
+            <div><dt>Hours</dt><dd style="color:var(--inverse)">Mon–Sat, 9–6</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="/js/layout.js" defer></script>
+<script src="/js/main.js" defer></script>
 </body>
 </html>
