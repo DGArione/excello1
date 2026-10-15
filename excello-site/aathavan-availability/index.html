@@ -213,8 +213,18 @@
       }
     });
 
-    // Load units from the Unit Register
-    fetch('/data/units.json').then(function (r) { return r.json(); }).then(function (data) {
+    // Load units from the Unit Register. Prefer the Node server's /api/units
+    // (which filters to published units); fall back to the raw /data/units.json
+    // when the site is served as pure static files (python -m http.server, etc.).
+    function loadUnits() {
+      return fetch('/api/units').then(function (r) {
+        if (!r.ok) throw new Error('no api');
+        return r.json();
+      }).catch(function () {
+        return fetch('/data/units.json').then(function (r) { return r.json(); });
+      });
+    }
+    loadUnits().then(function (data) {
       units = (data || []).filter(function (u) { return u.published !== false; });
       // Freshness: the newest updatedAt sets what we show on top
       var latest = units.reduce(function (acc, u) { return (u.updatedAt > acc) ? u.updatedAt : acc; }, 0);

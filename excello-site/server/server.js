@@ -137,65 +137,30 @@ function servePage(file) {
   };
 }
 
-/* ---- Public dynamic pages (before static) ------------------------------- */
-r.get(["/", "/index.html"], function (req, res) {
-  const site = readSite();
-  const projects = store.list("projects", { publishedOnly: true });
-  const bySlug = function (slug) { return projects.filter(function (p) { return p.slug === slug; })[0]; };
-  const cards = render.serviceCards(store.list("services", { publishedOnly: true }));
-  let html = injectPage("index.html", "<!--HOME_SERVICES-->", cards);
-  /* Horizontal "selected projects" scroller — first six published projects. */
-  html = html.replace("<!--HOME_HSCROLL-->", render.hscrollPanels(projects.slice(0, 6)));
-  /* Highlighted project (falls back to the first project). */
-  const feat = bySlug(site.homeFeatured) || projects[0];
-  html = html.replace("<!--HOME_FEATURED-->", render.homeFeatured(feat, site.homeFeaturedImage));
-  /* Two selected-work projects (fall back to the next projects). */
-  const selA = bySlug(site.homeSelectedA) || projects[1] || projects[0];
-  const selB = bySlug(site.homeSelectedB) || projects[2] || projects[1] || projects[0];
-  html = html.replace("<!--HOME_SELECTED-->", render.homeSelected([
-    { p: selA, img: site.homeSelectedImageA }, { p: selB, img: site.homeSelectedImageB }
-  ]));
-  /* Home statistics row (four configurable number + label pairs). */
-  html = html.replace("<!--HOME_STATS-->", render.homeStats(site));
-  sendPage(res, html, req);
+/* ---- Legacy route redirects (14 October 2026 master rebuild) ------------
+   The site is now a static folder-per-page structure served by express.static
+   below. These redirects keep old bookmarks and old flat URLs working. */
+function redir(target) {
+  return function (req, res) { res.redirect(301, target); };
+}
+r.get("/index.html",                     redir("/"));
+r.get(["/about", "/about.html"],         redir("/team/"));
+r.get("/services.html",                  redir("/services/"));
+r.get("/projects.html",                  redir("/projects/"));
+r.get("/insights.html",                  redir("/insights/"));
+r.get("/contact.html",                   redir("/contact/"));
+r.get(["/availability", "/availability.html"], redir("/aathavan-availability/"));
+r.get(["/calculator", "/calculator.html"],     redir("/tools/construction-cost-calculator-sri-lanka/"));
+r.get("/homev2",                         redir("/"));
+r.get("/services/homes",                 redir("/services/#homes"));
+r.get("/services/apartments",            redir("/developments/"));
+r.get("/services/hospitality",           redir("/developments/"));
+/* Legacy project / insight slug URLs → new folder paths. */
+r.get("/project/:slug", function (req, res) {
+  res.redirect(301, "/projects/" + encodeURIComponent(req.params.slug) + "/");
 });
-r.get(["/services", "/services.html"], function (req, res) {
-  const blocks = render.serviceBlocks(store.list("services", { publishedOnly: true }));
-  sendPage(res, injectPage("services.html", "<!--SERVICES-->", blocks), req);
-});
-r.get(["/projects", "/projects.html"], function (req, res) {
-  const cards = render.projectCards(store.list("projects", { publishedOnly: true }));
-  sendPage(res, injectPage("projects.html", "<!--PROJECTS-->", cards), req);
-});
-r.get(["/insights", "/insights.html"], function (req, res) {
-  const slides = render.insightSlides(store.list("insights", { publishedOnly: true }));
-  sendPage(res, injectPage("insights.html", "<!--INSIGHTS-->", slides), req);
-});
-/* Clean URLs for the static pages (also served with the .html alias). */
-r.get(["/about", "/about.html"], servePage("about.html"));
-r.get(["/contact", "/contact.html"], servePage("contact.html"));
-/* Unit availability + cost calculator: data-driven pages that render client-side
-   from /api/units and /api/rates, so the shells are served like the other pages
-   (the <base> tag + hero-image injection apply). */
-r.get(["/availability", "/availability.html"], servePage("availability.html"));
-r.get(["/calculator", "/calculator.html"], servePage("calculator.html"));
-r.get("/project/:slug", function (req, res, next) {
-  const p = store.getBySlug("projects", req.params.slug);
-  if (!p || p.published === false) return next();
-  const d = render.projectDetail(p);
-  sendPage(res, tpl("project.html", {
-    TITLE: render.esc(d.title), KICKER: render.esc(d.kicker), EXCERPT: render.esc(d.excerpt),
-    COVER: render.cover(d.cover, d.title), FACTS: d.facts, BODY: d.body, GALLERY: d.gallery
-  }), req);
-});
-r.get("/insight/:slug", function (req, res, next) {
-  const a = store.getBySlug("insights", req.params.slug);
-  if (!a || a.published === false) return next();
-  const d = render.insightDetail(a);
-  sendPage(res, tpl("insight.html", {
-    TITLE: render.esc(d.title), KICKER: render.esc(d.kicker), EXCERPT: render.esc(d.excerpt),
-    COVER: render.cover(d.cover, d.title), BODY: d.body
-  }), req);
+r.get("/insight/:slug", function (req, res) {
+  res.redirect(301, "/insights/" + encodeURIComponent(req.params.slug) + "/");
 });
 
 /* ---- Public API ---------------------------------------------------------- */
@@ -375,7 +340,6 @@ r.get(/\.html$/, function (req, res, next) {
    them. These files are content-stable; replace-and-restart still works because
    new files have new bytes (and admin uploads use unique filenames). */
 r.use("/img", express.static(path.join(ROOT, "img"), { maxAge: "30d", immutable: true }));
-r.use("/js/vendor", express.static(path.join(ROOT, "js", "vendor"), { maxAge: "30d", immutable: true }));
 /* maxAge 0 + etag: browsers revalidate every load, so edits and redeploys show
    immediately (a 304 is returned when a file is unchanged, so it stays fast). */
 r.use(express.static(ROOT, { extensions: ["html"], etag: true, maxAge: 0 }));
@@ -403,12 +367,19 @@ if (BASE) {
    IS a real route — so the app works at the domain root OR under any sub-folder
    with no BASE_PATH configuration. */
 const KNOWN_FIRST = {
-  "": 1, "index.html": 1, "about": 1, "about.html": 1, "services": 1, "services.html": 1,
-  "projects": 1, "projects.html": 1, "insights": 1, "insights.html": 1, "contact": 1,
-  "contact.html": 1, "availability": 1, "availability.html": 1, "calculator": 1,
-  "calculator.html": 1, "project": 1, "insight": 1, "admin": 1, "api": 1, "js": 1, "css": 1,
-  "img": 1, "uploads": 1, "favicon.ico": 1, "favicon.svg": 1, "robots.txt": 1, "sitemap.xml": 1,
-  "apple-touch-icon.png": 1
+  "": 1, "index.html": 1,
+  /* New folder-based routes (14 October 2026 master rebuild) */
+  "services": 1, "developments": 1, "projects": 1, "team": 1, "process": 1,
+  "insights": 1, "contact": 1, "tools": 1, "aathavan-availability": 1,
+  "privacy-policy": 1, "cookie-policy": 1, "terms-and-conditions": 1,
+  /* Legacy aliases that still redirect */
+  "about": 1, "about.html": 1, "services.html": 1, "projects.html": 1,
+  "insights.html": 1, "contact.html": 1, "availability": 1, "availability.html": 1,
+  "calculator": 1, "calculator.html": 1, "project": 1, "insight": 1, "homev2": 1,
+  /* System */
+  "admin": 1, "api": 1, "js": 1, "css": 1, "data": 1,
+  "img": 1, "uploads": 1, "favicon.ico": 1, "favicon.svg": 1, "robots.txt": 1,
+  "sitemap.xml": 1, "apple-touch-icon.png": 1
 };
 function firstSeg(p) { const m = /^\/([^\/?#]*)/.exec(p); return m ? m[1] : ""; }
 function isKnown(seg) { return Object.prototype.hasOwnProperty.call(KNOWN_FIRST, seg) || /\.[a-z0-9]+$/i.test(seg); }
